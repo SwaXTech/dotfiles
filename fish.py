@@ -41,12 +41,12 @@ def install_fisher():
     request = Request('https://git.io/fisher')
     response = urlopen(request)
     fisher_script = response.read().decode('utf8')
+    print('Installing fisher')
     with open('fisher.sh', 'w') as script:
         script.write(fisher_script)
 
-    print('Installing fisher')
-    stdout, stderr, status = exec_command('source fisher.sh')
+    stdout, stderr, status = exec_command(['fish', '-c', 'source fisher.sh; fisher install jorgebucaran/fisher'], needs_split = False)
     print(stdout, stderr, status)
-    exec('rm fisher.sh')
+    exec_command('rm fisher.sh')
 
 install_fisher()

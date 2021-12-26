@@ -1,8 +1,8 @@
 import subprocess
 import shlex
 
-def exec_command(command):
-    splitted_command = shlex.split(command)
+def exec_command(command, needs_split = True):
+    splitted_command = shlex.split(command) if needs_split else command
     process = subprocess.run(splitted_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
     stdout = process.stdout
     stderr = process.stderr
