@@ -1,11 +1,11 @@
-from shell import exec
+from shell import exec_command
 from urllib.request import Request
 from urllib.request import urlopen
 from basic import user
 
 def install_fish():
     print("Installing fish shell")
-    stdout, stderr, status = exec('pacman -S --noconfirm fish')
+    stdout, stderr, status = exec_command('pacman -S --noconfirm fish')
     if status != 0:
         print('There was an error installing fish')
         print(stdout, stderr)
@@ -21,17 +21,32 @@ def install_fish():
         script.write(omf_script)
 
     print("Installing OhMyFish!")
-    #stdout, stderr, status = exec(f'fish ohmyfish.sh --noninteractive --yes')
-    print(stdout, stderr, status)
-    stdout, stderr, status = exec(f'rm ohmyfish.sh')
+    stdout, stderr, status = exec_command(f'fish ohmyfish.sh --noninteractive --yes')
+    #print(stdout, stderr, status)
+    stdout, stderr, status = exec_command(f'rm ohmyfish.sh')
     #print(stdout, stderr, status)
 
     print("Changing Shell")
-    stdout, stderr, status = exec(f'chsh {user} -s /usr/bin/fish')
+    stdout, stderr, status = exec_command(f'chsh {user} -s /usr/bin/fish')
     print(stdout)
 
     print("Now set default shell on Konsole Profile")
 
 
 
-install_fish()
+#install_fish()
+
+def install_fisher():
+    print('Downloading fisher')
+    request = Request('https://git.io/fisher')
+    response = urlopen(request)
+    fisher_script = response.read().decode('utf8')
+    with open('fisher.sh', 'w') as script:
+        script.write(fisher_script)
+
+    print('Installing fisher')
+    stdout, stderr, status = exec_command('source fisher.sh')
+    print(stdout, stderr, status)
+    exec('rm fisher.sh')
+
+install_fisher()
