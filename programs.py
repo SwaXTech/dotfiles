@@ -16,5 +16,6 @@ paru = [
 flatpak = [
 
     'onlyoffice',
-    'org.telegram.desktop'
+    'org.telegram.desktop',
+    'flathub com.valvesoftware.Steam'
 ]
