@@ -45,7 +45,7 @@ def install_fisher():
     with open('fisher.sh', 'w') as script:
         script.write(fisher_script)
 
-    stdout, stderr, status = exec_command(['fish', '-c', 'source fisher.sh; fisher install jorgebucaran/fisher; fisher install IlanCosman/tide'], needs_split = False)
+    stdout, stderr, status = exec_command(['fish', '-c', 'source fisher.sh; fisher install jorgebucaran/fisher; fisher install IlanCosman/tide'], needs_split = False, as_root = False)
     print(stdout, stderr, status)
     
     exec_command('rm fisher.sh')
