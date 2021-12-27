@@ -1,5 +1,7 @@
 from shell import exec_command
 import os
+from basic import user
+from programs import programs
 
 def pacman_config():
     current_path = os.getcwd()
@@ -11,4 +13,26 @@ def pacman_config():
         return False
     return True
 
-pacman_config()
+#pacman_config()
+
+def install_paru():
+    stdout, stderr, status = exec_command('pacman -Syu --noconfirm')
+    print(stdout)
+    stdout, stderr, status = exec_command('pacman -S --noconfirm git')
+    print(stdout)
+    stdout, stderr, status = exec_command('pacman -S --noconfirm --nedded base-devel')
+    print(stdout)
+
+    stdout, stderr, status = exec_command(f"sudo -u {user} fish -c 'git clone https://aur.archlinux.org/paru.git /tmp/paru'", as_root = False) 
+    print(stdout, stderr, status)
+    stdout, stderr, status = exec_command(f"sudo -u {user} fish -c 'cd /tmp/paru; makepkg -si --noconfirm'", as_root = False)
+    print(stdout, stderr, status)
+    stdout, stderr, status = exec_command('rm -rf /tmp/paru')
+
+
+def install_programs():
+    to_install = ' '.join(programs)
+    stdout, stderr, status = exec_command(f"sudo -u {user} fish -c 'paru -Sy --noconfirm {to_install}'", as_root = False)
+    print(stdout, stderr, status)
+
+install_programs()
