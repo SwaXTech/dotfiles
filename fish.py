@@ -2,6 +2,7 @@ from shell import exec_command
 from urllib.request import Request
 from urllib.request import urlopen
 from basic import user
+from fish_plugins import fish_plugins
 
 def install_fish():
     print("Installing fish shell")
@@ -45,10 +46,15 @@ def install_fisher():
     with open('fisher.sh', 'w') as script:
         script.write(fisher_script)
 
-    stdout, stderr, status = exec_command(['fish', '-c', 'source fisher.sh; fisher install jorgebucaran/fisher; fisher install IlanCosman/tide'], needs_split = False, as_root = False)
+    stdout, stderr, status = exec_command(['fish', '-c', 'source fisher.sh; fisher install jorgebucaran/fisher'], needs_split = False, as_root = False)
     print(stdout, stderr, status)
     
     exec_command('rm fisher.sh')
     
 
-install_fisher()
+def install_fish_plugins():
+    for plugin in fish_plugins:
+        stdout, stderr, status = exec_command(f"fish -c 'fisher install {plugin}'", as_root = False)
+        print(stdout, stderr, status)
+
+install_fish_plugins()
