@@ -9,8 +9,8 @@ paru = [
     'youtube-music-bin',
     'neovim',
     'bat',
-    'docker',
-    'docker-compose',
+#    'docker',
+#    'docker-compose',
 ]
 
 flatpak = [
