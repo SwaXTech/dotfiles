@@ -1,7 +1,8 @@
 from shell import exec_command
 import os
 from basic import user
-from programs import programs
+from programs import paru as paru_programs
+from programs import flatpak as flatpak_programs
 
 def pacman_config():
     current_path = os.getcwd()
@@ -31,8 +32,14 @@ def install_paru():
 
 
 def install_programs():
-    to_install = ' '.join(programs)
+    to_install = ' '.join(paru_programs)
     stdout, stderr, status = exec_command(f"sudo -u {user} fish -c 'paru -Sy --noconfirm {to_install}'", as_root = False)
     print(stdout, stderr, status)
 
-install_programs()
+
+def install_flatpak_programs():
+    for program in flatpak_programs:
+        stdout, stderr, status = exec_command(f'flatpak install -y --noninteractive {program}')
+        print(stdout, stderr, status)
+
+install_flatpak_programs()

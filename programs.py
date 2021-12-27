@@ -1,4 +1,4 @@
-programs = [
+paru = [
     'htop',
     'neofetch',
     'discord',
@@ -11,4 +11,10 @@ programs = [
     'bat',
     'docker',
     'docker-compose',
+]
+
+flatpak = [
+
+    'onlyoffice',
+    'org.telegram.desktop'
 ]

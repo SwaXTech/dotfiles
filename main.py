@@ -28,3 +28,5 @@ fish_plugins = install_fish_plugins()
 
 if not fish_plugins:
     sys.exit(1)
+
+
