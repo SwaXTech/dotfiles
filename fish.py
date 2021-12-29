@@ -67,4 +67,3 @@ def install_fish_plugins():
         if status != 0:
             return False
     return True
-

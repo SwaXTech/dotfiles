@@ -1,0 +1,19 @@
+[Desktop Entry]
+DefaultProfile=default.profile
+
+[MainWindow]
+RestorePositionForNextInstance=false
+State=AAAA/wAAAAD9AAAAAQAAAAAAAAAAAAAAAPwCAAAAAfsAAAAcAFMAUwBIAE0AYQBuAGEAZwBlAHIARABvAGMAawAAAAAA/////wAAANUBAAADAAAHcAAAAukAAAAEAAAABAAAAAgAAAAI/AAAAAEAAAACAAAAAgAAABYAbQBhAGkAbgBUAG8AbwBsAEIAYQByAQAAAAD/////AAAAAAAAAAAAAAAcAHMAZQBzAHMAaQBvAG4AVABvAG8AbABiAGEAcgEAAADo/////wAAAAAAAAAA
+ToolBarsMovable=Disabled
+Virtual-1 Height 1024x768=695
+Virtual-1 Height 1904x902=535
+Virtual-1 Width 1024x768=897
+Virtual-1 Width 1904x902=1269
+Virtual-1 Window-Maximized 1904x902=true
+Virtual-1 XPosition 1024x768=0
+Virtual-1 XPosition 1904x902=324
+Virtual-1 YPosition 1024x768=29
+Virtual-1 YPosition 1904x902=109
+
+[UiSettings]
+ColorScheme=Default

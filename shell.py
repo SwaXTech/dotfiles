@@ -3,12 +3,13 @@ import shlex
 import os
 from basic import base_path as home
 
-def exec_command(command, needs_split = True, as_root = True):
+def exec_command(command, needs_split = True, as_root = True, no_redirect = False):
+    pipe =subprocess.DEVNULL if no_redirect else subprocess.PIPE
     if not as_root:
         os.seteuid(1000)
         os.environ['HOME'] = home
     splitted_command = shlex.split(command) if needs_split else command
-    process = subprocess.run(splitted_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
+    process = subprocess.run(splitted_command, stdout=pipe, stderr=pipe, universal_newlines=True)
     stdout = process.stdout
     stderr = process.stderr
     returncode = process.returncode
